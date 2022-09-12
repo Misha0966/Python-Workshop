@@ -15,6 +15,6 @@ myList = list()
 for i in range(N + 1):
     myList.append(Fibonacci(i))
     if i != 0:
-        myList.insert(0, -1 * myList[-1])
+        myList.insert(0, myList[-1] * (-1)**(i + 1))
 
 print(myList)
