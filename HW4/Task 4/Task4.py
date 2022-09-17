@@ -5,32 +5,29 @@ from random import randint
 
 k = int(input("Enter k = > "))
 
-coeffs = [randint(0, 1) for i in range(k + 1)]
+coeffs = [randint(0, 100) for i in range(k + 1)]
+monomials = list()
 
-print(coeffs)
+print(coeffs[::-1])
 
 output = ''
 
 for i in range(len(coeffs) - 1, -1, -1):
-    if coeffs[i] != 0 and i == len(coeffs) - 1:
-        output += str(coeffs[i]) + '*x^' + str(i)
-    elif coeffs[i] != 0 and i > 1 and i < len(coeffs):
-        output += ' + ' + str(coeffs[i]) + '*x^' + str(i)    
-    elif coeffs[i] != 0 and i == 1:
-        output += ' + ' + str(coeffs[i]) + '*x'
-    elif coeffs[i] != 0 and i == 0:
-        output += ' + ' + str(coeffs[i])
+    if coeffs[i] != 0:
+        if i == len(coeffs) - 1 and i != 1:
+            monomials.append(str(coeffs[i]) + '*x^' + str(i))
+        elif i > 1 and i < len(coeffs):
+            monomials.append(str(coeffs[i]) + '*x^' + str(i))    
+        elif i == 1:
+            monomials.append(str(coeffs[i]) + '*x')
+        elif i == 0:
+            monomials.append(str(coeffs[i]))
 
-output += ' = 0'
+if len(coeffs) == 1 or max(coeffs[1:]) == 0:
+    output = 'Polynomial doesn\'t exist'
+else:
+    output = ' + '.join(monomials) + ' = 0'
 
-
-print(output)
-    
-
-
-# if 
-
-# for i in range(k, -1, -1):
-#     output += str(randint(0, 100)) + '*' + 'x**' + str(i) + ' '
-
-# print(output)
+result = open('result.txt', 'w')
+result.write(output)
+result.close()
