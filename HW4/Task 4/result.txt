@@ -1,1 +1,1 @@
-Polynomial doesn't exist
+12*x + 59 = 0
